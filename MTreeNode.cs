@@ -29,13 +29,23 @@ namespace MunchExplorer
                     hierarchy.Add(current);
                     current = current.Parent;
                 }
+                hierarchy.Reverse();
 
                 var builder = new StringBuilder();
-                for (int i = hierarchy.Count - 1; i >= 0; i--)
+                for (int i = 0; i < hierarchy.Count; i++)
                 {
-                    builder.Append(hierarchy[i].Name);
-                    if (i != 0)
-                        builder.Append('/');
+                    var node = hierarchy[i];
+                    builder.Append(node.Name);
+
+                    if (i != hierarchy.Count - 1)
+                    {
+                        var child = hierarchy[i + 1];
+                        var idx = node.Children.IndexOf(child);
+                        builder.Append('[');
+                        builder.Append(idx);
+                        builder.Append(']');
+                        builder.Append('.');
+                    }
                 }
 
                 cachedPath = builder.ToString();
@@ -60,7 +70,7 @@ namespace MunchExplorer
             var rawName = new byte[4];
             accessor.ReadArray(offset, rawName, 0, 4);
             result.Parent = null;
-            result.Name = Encoding.ASCII.GetString(rawName);
+            result.Name = Utils.SafeBytesToString(rawName);
             result.DataSize = Utils.Read32LE(accessor, offset + 4);
             result.DataOffset = offset + 8;
             result.Children = new List<MTreeNode>();
@@ -91,7 +101,7 @@ namespace MunchExplorer
 
                 var nameRaw = new byte[4];
                 accessor.ReadArray(current, nameRaw, 0, 4);
-                var name = Encoding.ASCII.GetString(nameRaw);
+                var name = Utils.SafeBytesToString(nameRaw);
 
                 var chunkSize = Utils.Read32LE(accessor, current + 4);
                 current += 8;

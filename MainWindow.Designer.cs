@@ -29,6 +29,7 @@ namespace MunchExplorer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -39,33 +40,36 @@ namespace MunchExplorer
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.displayPositionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayedDataTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayAsU8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diplayAsU16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayAsU32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayAsF32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPageRaw = new System.Windows.Forms.TabPage();
             this.rawViewSplitContainer = new System.Windows.Forms.SplitContainer();
             this.rawTreeView = new System.Windows.Forms.TreeView();
-            this.hexTextBox = new System.Windows.Forms.TextBox();
-            this.tabPageDecoded = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.treeContextStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.saveNodeContentswithHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveNodeContentswithoutHeaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataTextBox = new System.Windows.Forms.TextBox();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabPageRaw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawViewSplitContainer)).BeginInit();
             this.rawViewSplitContainer.Panel1.SuspendLayout();
             this.rawViewSplitContainer.Panel2.SuspendLayout();
             this.rawViewSplitContainer.SuspendLayout();
-            this.tabPageDecoded.SuspendLayout();
+            this.treeContextStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip.Location = new System.Drawing.Point(0, 589);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1004, 22);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -84,7 +88,7 @@ namespace MunchExplorer
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1004, 24);
             this.menuStrip.TabIndex = 1;
             // 
             // fileMenu
@@ -102,7 +106,7 @@ namespace MunchExplorer
             // 
             this.openMenuItem.Name = "openMenuItem";
             this.openMenuItem.ShortcutKeyDisplayString = "";
-            this.openMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openMenuItem.Text = "Open...";
             this.openMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
@@ -110,26 +114,27 @@ namespace MunchExplorer
             // 
             this.closeMenuItem.Enabled = false;
             this.closeMenuItem.Name = "closeMenuItem";
-            this.closeMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.closeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeMenuItem.Text = "Close file";
             this.closeMenuItem.Click += new System.EventHandler(this.CloseMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // quitMenuItem
             // 
             this.quitMenuItem.Name = "quitMenuItem";
-            this.quitMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.quitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.quitMenuItem.Text = "Quit";
             this.quitMenuItem.Click += new System.EventHandler(this.QuitMenuItem_Click);
             // 
             // viewMenu
             // 
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.displayPositionMenuItem});
+            this.displayPositionMenuItem,
+            this.displayedDataTypeToolStripMenuItem});
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Size = new System.Drawing.Size(44, 20);
             this.viewMenu.Text = "View";
@@ -142,6 +147,45 @@ namespace MunchExplorer
             this.displayPositionMenuItem.Size = new System.Drawing.Size(190, 22);
             this.displayPositionMenuItem.Text = "Display size and offset";
             this.displayPositionMenuItem.Click += new System.EventHandler(this.DisplayPositionMenuItem_Click);
+            // 
+            // displayedDataTypeToolStripMenuItem
+            // 
+            this.displayedDataTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayAsU8ToolStripMenuItem,
+            this.diplayAsU16ToolStripMenuItem,
+            this.displayAsU32ToolStripMenuItem,
+            this.displayAsF32ToolStripMenuItem});
+            this.displayedDataTypeToolStripMenuItem.Name = "displayedDataTypeToolStripMenuItem";
+            this.displayedDataTypeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.displayedDataTypeToolStripMenuItem.Text = "Displayed data type";
+            // 
+            // displayAsU8ToolStripMenuItem
+            // 
+            this.displayAsU8ToolStripMenuItem.Name = "displayAsU8ToolStripMenuItem";
+            this.displayAsU8ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.displayAsU8ToolStripMenuItem.Text = "Display as u8";
+            this.displayAsU8ToolStripMenuItem.Click += new System.EventHandler(this.DisplayAsU8_Click);
+            // 
+            // diplayAsU16ToolStripMenuItem
+            // 
+            this.diplayAsU16ToolStripMenuItem.Name = "diplayAsU16ToolStripMenuItem";
+            this.diplayAsU16ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.diplayAsU16ToolStripMenuItem.Text = "Diplay as u16";
+            this.diplayAsU16ToolStripMenuItem.Click += new System.EventHandler(this.DisplayAsU16_Click);
+            // 
+            // displayAsU32ToolStripMenuItem
+            // 
+            this.displayAsU32ToolStripMenuItem.Name = "displayAsU32ToolStripMenuItem";
+            this.displayAsU32ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.displayAsU32ToolStripMenuItem.Text = "Display as u32";
+            this.displayAsU32ToolStripMenuItem.Click += new System.EventHandler(this.DisplayAsU32_Click);
+            // 
+            // displayAsF32ToolStripMenuItem
+            // 
+            this.displayAsF32ToolStripMenuItem.Name = "displayAsF32ToolStripMenuItem";
+            this.displayAsF32ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.displayAsF32ToolStripMenuItem.Text = "Display as f32";
+            this.displayAsF32ToolStripMenuItem.Click += new System.EventHandler(this.DisplayAsF32_Click);
             // 
             // helpMenu
             // 
@@ -158,31 +202,11 @@ namespace MunchExplorer
             this.aboutMenuItem.Text = "About";
             this.aboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.tabPageRaw);
-            this.tabControl.Controls.Add(this.tabPageDecoded);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 24);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 404);
-            this.tabControl.TabIndex = 2;
-            // 
-            // tabPageRaw
-            // 
-            this.tabPageRaw.Controls.Add(this.rawViewSplitContainer);
-            this.tabPageRaw.Location = new System.Drawing.Point(4, 24);
-            this.tabPageRaw.Name = "tabPageRaw";
-            this.tabPageRaw.Size = new System.Drawing.Size(792, 376);
-            this.tabPageRaw.TabIndex = 0;
-            this.tabPageRaw.Text = "Raw View";
-            this.tabPageRaw.UseVisualStyleBackColor = true;
-            // 
             // rawViewSplitContainer
             // 
             this.rawViewSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rawViewSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.rawViewSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.rawViewSplitContainer.Location = new System.Drawing.Point(0, 24);
             this.rawViewSplitContainer.Name = "rawViewSplitContainer";
             // 
             // rawViewSplitContainer.Panel1
@@ -191,80 +215,89 @@ namespace MunchExplorer
             // 
             // rawViewSplitContainer.Panel2
             // 
-            this.rawViewSplitContainer.Panel2.Controls.Add(this.hexTextBox);
-            this.rawViewSplitContainer.Size = new System.Drawing.Size(792, 376);
-            this.rawViewSplitContainer.SplitterDistance = 264;
+            this.rawViewSplitContainer.Panel2.Controls.Add(this.dataTextBox);
+            this.rawViewSplitContainer.Size = new System.Drawing.Size(1004, 565);
+            this.rawViewSplitContainer.SplitterDistance = 266;
             this.rawViewSplitContainer.TabIndex = 0;
             // 
             // rawTreeView
             // 
+            this.rawTreeView.ContextMenuStrip = this.treeContextStrip;
             this.rawTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rawTreeView.Location = new System.Drawing.Point(0, 0);
             this.rawTreeView.Name = "rawTreeView";
-            this.rawTreeView.Size = new System.Drawing.Size(264, 376);
+            this.rawTreeView.Size = new System.Drawing.Size(266, 565);
             this.rawTreeView.TabIndex = 0;
-            this.rawTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.RawTreeView_AfterSelect);
+            this.rawTreeView.DoubleClick += new System.EventHandler(this.RawTreeView_DoubleClick);
             // 
-            // hexTextBox
+            // treeContextStrip
             // 
-            this.hexTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hexTextBox.Font = new System.Drawing.Font("Source Code Pro", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hexTextBox.Location = new System.Drawing.Point(0, 0);
-            this.hexTextBox.Multiline = true;
-            this.hexTextBox.Name = "hexTextBox";
-            this.hexTextBox.ReadOnly = true;
-            this.hexTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.hexTextBox.Size = new System.Drawing.Size(524, 376);
-            this.hexTextBox.TabIndex = 0;
-            this.hexTextBox.Text = "Hex view";
-            this.hexTextBox.WordWrap = false;
+            this.treeContextStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
+            this.saveNodeContentswithHeaderToolStripMenuItem,
+            this.saveNodeContentswithoutHeaderToolStripMenuItem});
+            this.treeContextStrip.Name = "treeContextStrip";
+            this.treeContextStrip.Size = new System.Drawing.Size(269, 92);
             // 
-            // tabPageDecoded
+            // saveNodeContentswithHeaderToolStripMenuItem
             // 
-            this.tabPageDecoded.Controls.Add(this.label1);
-            this.tabPageDecoded.Location = new System.Drawing.Point(4, 24);
-            this.tabPageDecoded.Name = "tabPageDecoded";
-            this.tabPageDecoded.Size = new System.Drawing.Size(792, 376);
-            this.tabPageDecoded.TabIndex = 1;
-            this.tabPageDecoded.Text = "Decoded View";
-            this.tabPageDecoded.UseVisualStyleBackColor = true;
+            this.saveNodeContentswithHeaderToolStripMenuItem.Name = "saveNodeContentswithHeaderToolStripMenuItem";
+            this.saveNodeContentswithHeaderToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.saveNodeContentswithHeaderToolStripMenuItem.Text = "Save node contents (with header)";
+            this.saveNodeContentswithHeaderToolStripMenuItem.Click += new System.EventHandler(this.SaveNodeWithHeader_Click);
             // 
-            // label1
+            // saveNodeContentswithoutHeaderToolStripMenuItem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "TODO";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.saveNodeContentswithoutHeaderToolStripMenuItem.Name = "saveNodeContentswithoutHeaderToolStripMenuItem";
+            this.saveNodeContentswithoutHeaderToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.saveNodeContentswithoutHeaderToolStripMenuItem.Text = "Save node contents (without header)";
+            this.saveNodeContentswithoutHeaderToolStripMenuItem.Click += new System.EventHandler(this.SaveNodeWithoutHeader_Click);
+            // 
+            // dataTextBox
+            // 
+            this.dataTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataTextBox.Font = new System.Drawing.Font("Source Code Pro", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dataTextBox.Location = new System.Drawing.Point(0, 0);
+            this.dataTextBox.Multiline = true;
+            this.dataTextBox.Name = "dataTextBox";
+            this.dataTextBox.ReadOnly = true;
+            this.dataTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.dataTextBox.Size = new System.Drawing.Size(734, 565);
+            this.dataTextBox.TabIndex = 0;
+            this.dataTextBox.Text = "Data view";
+            this.dataTextBox.WordWrap = false;
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabControl);
+            this.ClientSize = new System.Drawing.Size(1004, 611);
+            this.Controls.Add(this.rawViewSplitContainer);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainWindow";
             this.Text = "MunchExplorer";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainWindow_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainWindow_DragEnter);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.tabControl.ResumeLayout(false);
-            this.tabPageRaw.ResumeLayout(false);
             this.rawViewSplitContainer.Panel1.ResumeLayout(false);
             this.rawViewSplitContainer.Panel2.ResumeLayout(false);
             this.rawViewSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawViewSplitContainer)).EndInit();
             this.rawViewSplitContainer.ResumeLayout(false);
-            this.tabPageDecoded.ResumeLayout(false);
-            this.tabPageDecoded.PerformLayout();
+            this.treeContextStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,16 +313,21 @@ namespace MunchExplorer
         private System.Windows.Forms.ToolStripMenuItem quitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpMenu;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageRaw;
-        private System.Windows.Forms.TabPage tabPageDecoded;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.SplitContainer rawViewSplitContainer;
         private System.Windows.Forms.TreeView rawTreeView;
-        private System.Windows.Forms.TextBox hexTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox dataTextBox;
         private System.Windows.Forms.ToolStripMenuItem viewMenu;
         private System.Windows.Forms.ToolStripMenuItem displayPositionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeMenuItem;
+        private System.Windows.Forms.ContextMenuStrip treeContextStrip;
+        private System.Windows.Forms.ToolStripMenuItem saveNodeContentswithHeaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveNodeContentswithoutHeaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayedDataTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayAsU8ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diplayAsU16ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayAsU32ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayAsF32ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }

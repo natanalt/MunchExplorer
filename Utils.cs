@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Text;
 
 namespace MunchExplorer
 {
@@ -19,12 +21,45 @@ namespace MunchExplorer
 
         public static bool VerifyAllASCII(byte[] arr)
         {
-            foreach (var b in arr)
+            return Array.TrueForAll(arr, x => x > 127);
+        }
+
+        public static bool IsLatinLetterOrDigitOrUnderscore(char c)
+        {
+            var isDigit = c >= '0' && c <= '9';
+            var isLowercase = c >= 'a' && c <= 'z';
+            var isUppercase = c >= 'A' && c <= 'Z';
+            var isUnderscore = c == '_';
+            return isDigit || isLowercase || isUppercase || isUnderscore;
+        }
+
+        public static string SafeBytesToString(byte[] data)
+        {
+            var result = new StringBuilder();
+
+            foreach (var b in data)
             {
-                if (b > 127)
-                    return false;
+                if (IsLatinLetterOrDigitOrUnderscore((char)b))
+                {
+                    result.Append((char)b);
+                }
+                else
+                {
+                    result.Append("\\x");
+                    result.Append(b.ToString("X2"));
+                }
             }
-            return true;
+
+            return result.ToString();
+        }
+
+        public static void SaveMapToStream(
+            Stream target,
+            UnmanagedMemoryAccessor memory,
+            long offset,
+            long size)
+        {
+
         }
     }
 }

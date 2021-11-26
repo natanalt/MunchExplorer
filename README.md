@@ -10,6 +10,8 @@ loading process to maybe load node information dynamically. Too bad. Same thing
 goes for the hexdumps, which generate large strings, many times larger than the
 raw nodes themselves.
 
+Also the source code is a mess, I really don't care.
+
 ## Tree generation
 The generated tree that can be seen on the sidebar is generated automatically based
 on each nodes' content. If a node contains what seems to be valid child hierarchy
